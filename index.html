@@ -80,10 +80,25 @@
         border-radius: 6px;
         font-size: 14px;
       }
+
+      .storage-info {
+        background: white;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+
+      .storage-info p {
+        margin: 5px 0;
+        color: #666;
+        font-size: 14px;
+      }
     </style>
 </head>
 <body>
     <h2>회원가입</h2>
+    <div id="storageInfo" class="storage-info"></div>
 
     <form id="githubForm">
       <div class="input-group">
@@ -122,10 +137,15 @@
         const login_id = localStorage.getItem("login_id");
         const swingAppKey = localStorage.getItem("swingAppKey");
         
+        const storageInfo = document.getElementById("storageInfo");
         if (login_key && login_id && swingAppKey) {
-          console.log("login_key : " + login_key);
-          console.log("login_id : " + login_id);
-          console.log("swingAppKey : " + swingAppKey);
+          storageInfo.innerHTML = `
+            <p>로그인 키: ${login_key}</p>
+            <p>로그인 ID: ${login_id}</p>
+            <p>스윙 앱 키: ${swingAppKey}</p>
+          `;
+        } else {
+          storageInfo.innerHTML = "<p>저장된 정보가 없습니다.</p>";
         }
       });
 
